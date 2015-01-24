@@ -1,0 +1,8 @@
+/*CSS base styles for color palettes
+  TODO: Sass incorporation?       */
+
+.container {
+  width: 250px;
+  height: 200px;
+  background-color: #ee5f5b;
+}
