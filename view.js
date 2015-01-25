@@ -18,8 +18,7 @@ View.prototype = {
     group.append('<div contenteditable="true" class="hex-code">#c3325f</div>');
     group.css('background-color', '#c3325f');
 
-    group.append('<div class="well"></div>');
-    $('.well',group).addClass('connectedSortable');
+    group.append('<div class="color-match-list connectedSortable"></div>');
 
     $(this.groupListSelector).append(group);
 
