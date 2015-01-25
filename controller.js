@@ -6,27 +6,28 @@ Controller.prototype = {
 
   start: function(){
     this.view = new View();
-
+    // Do spaces matter here? Does the order matter here, should it match order of functions below?
     this.showAllColors();
-    this.view.addColorGroup();
+    this.view.showNewColorGroup();
 
     this.updateSortables();
     this.bindEvents();
   },
 
   bindEvents: function(){
-    $(this.view.addColorGroupButtonSelector).on("click", this.addColorGroupButton.bind(this));
+    $(this.view.newGroupButtonSelector).on("click", this.newColorGroupButton.bind(this));
     $('.hex-code, .shade-percent').on("focusout", this.changeGroupColor.bind(this));
   },
 
-  addColorGroupButton: function(e) {
+  newColorGroupButton: function(e) {
+    // why prevent default here?
     e.preventDefault();
-    console.log("adding a color group");
+    // console.log("adding a color group");
 
-    var newGroup = this.view.addColorGroup();
+    var newGroup = this.view.showNewColorGroup();
     $('.hex-code, .shade-percent', newGroup).on("focusout", this.changeGroupColor.bind(this));
     this.updateSortables();
-
+    // space?
   },
 
   showAllColors: function() {
@@ -41,7 +42,7 @@ Controller.prototype = {
 
         self.view.addColorSwatch(div);
       });
-
+      // space?
     });
 
   },

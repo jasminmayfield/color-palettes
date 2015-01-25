@@ -1,5 +1,5 @@
 function View() {
-  this.addColorGroupButtonSelector = "#add-color-group-button";
+  this.newGroupButtonSelector = "#new-group-button";
   this.colorListSelector = "#color-list";
   this.groupListSelector = "#group-list";
   this.connectedSortablesSelector = ".connectedSortable";
@@ -11,11 +11,10 @@ View.prototype = {
     $(this.colorListSelector).append(div).addClass('connectedSortable');
   },
 
-  addColorGroup: function() {
-    console.log("viewing a color group");
+  showNewColorGroup: function() {
+    console.log("A color group has been added");
 
-    var group = $('<div></div>');
-    group.addClass('group');
+    var group = $('<div class="group"></div>');
     group.append('<div contenteditable="true" class="hex-code">#c3325f</div>');
     group.append('<div contenteditable="true" class="shade-percent">0</div>');
     group.css('background-color', '#c3325f');
