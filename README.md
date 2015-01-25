@@ -21,6 +21,13 @@ current base color you are working with, creating a new palette and/or color com
 - Base colors can be lightened or darkened by changing the input value from 0.
 - Your work can be reset. It can also be saved, but only just once! (at this stage!)
 
+### To run it
+- This app has no official back end but uses jQuery Storage API to save data instead.
+- To get it fired up, clone, cd into the directory and run:
+```
+$ python -m SimpleHTTPServer
+```
+
 ### A few notes / potential TODO list
 - Darkening your palette requires a negative integer, e.g. ` -80` will darken the
 palette by 80%.
