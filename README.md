@@ -5,18 +5,18 @@ MyXero, Payroll &amp; Practice Manager.
 This seemed necessary to build a tool to help group colors so we can then create
 shared variables for Sass Globals (which are to be consumed across all projects as desired).
 Simultaneously it will help strip down the shitload of colors we have on file,
-allowing design making and dev-building a better, more manageable and collaborative
-experience.
+allowing design making and dev-building to be a better, more manageable and
+collaborative experience.
 
 ### Features and what it does
 - Uses jQuery/UI 'sortable' to drag and drop color swatches onto color palettes
 to identify like color groups. They can be removed as well as dropped onto
 any other base palette. (At this stage there is just one color swatch per hex
 value, therefore you can't have multiple hex values shared across many palettes).
-- Base color palettes can be added as needed
-- Base color palettes can be modified by typing in a different hex value. This
-will automatically trigger/update the background-color of the current base
-color you are working with, creating a new palette and/or color comparison.
+- Base color palettes can be added, reordered and removed as needed.
+- Base color palette background colors can be modified by typing in a different
+hex value. This will automatically trigger/update the background-color of the
+current base color you are working with, creating a new palette and/or color comparison.
 - Base colors can be lightened or darkened by changing the input value from 0.
 
 ### A few notes / potential TODO list
@@ -26,3 +26,4 @@ palette by 80%.
 - Duplicate color swatches in order to compare them across multiple color palettes.
 - The lighten/darken feature does not calculate hue or saturation variation -
 not really required for this project brief.
+- A lighten / darken slider per color palette would be cool.
