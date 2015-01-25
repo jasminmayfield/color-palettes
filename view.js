@@ -30,6 +30,8 @@ View.prototype = {
 
     var group = $('<div class="group"></div>');
     group.append('<div class="handle"><span class="fa fa-square"></span></div>');
+    group.append('<div contenteditable="true" class="sass-global">$rename-me</div>');
+    group.append('<div style="clear:both;"></div>');
     group.append('<div contenteditable="true" class="hex-code">'+hexCode+'</div>');
     group.append('<div contenteditable="true" class="shade-percent">'+shadePercent+'</div>');
     group.append('<div class="color-match-list connectedSortable"></div>');

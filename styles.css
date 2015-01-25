@@ -49,13 +49,19 @@ a:active {
   position: relative;
 }
 
-.group .hex-code {
-  width: 100px;
+.group .sass-global {
   display: inline-block;
+  font-weight: bolder;
+}
+
+.group .hex-code {
+  width: 75px;
+  display: inline-block;
+  margin-left: 30px;
 }
 
 .group .shade-percent {
-  width: 50px;
+  width: 30px;
   display: inline-block;
 }
 
