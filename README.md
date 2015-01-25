@@ -30,4 +30,7 @@ palette by 80%.
 not really required for this project brief.
 - Ability to save multiple copies to online file that can be previewed/edited
 as and when needed.
+- Shade color method does not support 3 character hex codes, would be nice to
+support that (although sometimes seems to return funny colors, requires further
+testing).
 - A lighten/darken slider per color palette would be cool.

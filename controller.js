@@ -7,45 +7,43 @@ Controller.prototype = {
   start: function(){
     this.view = new View();
     this.storage = $.localStorage;
-    
-    this.showAllColors();
-    this.view.showNewColorGroup();
+
+    this.loadSort();
+    if ($('.swatch').length === 0) this.resetSort();
 
     this.updateSortables();
     this.bindEvents();
   },
 
   bindEvents: function(){
-    $(this.view.newGroupButtonSelector).on("click", this.newColorGroupButton.bind(this));
-    $('.hex-code, .shade-percent').on("focusout", this.changeGroupColor.bind(this));
+    $(this.view.resetButtonSelector).on("click", this.resetSort.bind(this));
+    $(this.view.saveButtonSelector).on("click", this.saveSort.bind(this));
+    $(this.view.newGroupButtonSelector).on("click", this.newGroup.bind(this));
+    $(this.view.groupListSelector).on("focusout", '.hex-code, .shade-percent', this.changeGroupColor.bind(this));
+    $(this.view.groupListSelector).on("click", '.close-button', this.removeGroup.bind(this));
   },
 
-  newColorGroupButton: function(e) {
-    // why prevent default here?
+  newGroup: function(e) {
     e.preventDefault();
-    // console.log("adding a color group");
-
-    var newGroup = this.view.showNewColorGroup();
-    $('.hex-code, .shade-percent', newGroup).on("focusout", this.changeGroupColor.bind(this));
+    console.log("adding a color group");
+    this.view.addGroup();
     this.updateSortables();
-    // space?
   },
 
-  showAllColors: function() {
+  removeGroup: function(e) {
+    console.log("removing a color group");
+    e.preventDefault();
+    $(e.target).closest('.group').find('.swatch').appendTo(this.view.colorListSelector);
+    $(e.target).closest('.group').remove();
+  },
+
+  showAllSwatches: function() {
     var self = this;
     groups.forEach(function (group, i) {
-
       group.items.forEach(function(item, j) {
-        var div = document.createElement("div");
-        div.className = "swatch";
-        div.style.backgroundColor = item.color;
-        div.innerText = item.color + ' ('+item.files.length+')';
-
-        self.view.addColorSwatch(div);
+        self.view.addSwatch(item.color, item.files.length);
       });
-      // space?
     });
-
   },
 
   changeGroupColor: function(e) {
@@ -67,6 +65,76 @@ Controller.prototype = {
       helper: 'clone',
       appendTo: 'body'
     }).disableSelection();
+
+    $(this.view.groupListSelector).sortable({
+      handle: '.handle',
+      helper: 'clone',
+      appendTo: 'body'
+    });
+  },
+
+  saveSort: function() {
+    console.log("Saving my sort");
+    var myGroups = [];
+    $('.group').each(function(i) {
+      myGroups[i] = {};
+      myGroups[i]['hexCode'] = $('.hex-code',this).text();
+      myGroups[i]['shadePercent'] = $('.shade-percent',this).text();
+      myGroups[i].swatches = [];
+      $('.swatch',this).each(function(j) {
+        myGroups[i].swatches.push({
+          hexCode: $(this).data('hex-code'),
+          counter: $(this).data('counter')
+        });
+      });
+    });
+
+    var unsortedSwatches = [];
+    $('.swatch', this.view.colorListSelector).each(function(i) {
+      unsortedSwatches.push({
+        hexCode: $(this).data('hex-code'),
+        counter: $(this).data('counter')
+      });
+    });
+    myGroups.push({
+      hexCode: 'none',
+      swatches: unsortedSwatches
+    });
+
+    console.log(myGroups);
+    // When you save things to local storage you must give it a name
+    this.storage.set('myGroups', myGroups);
+  },
+
+  loadSort: function() {
+    console.log('loading the color list');
+    var self= this;
+    if (this.storage.isSet('myGroups')) {
+      var myGroups = this.storage.get('myGroups');
+
+      myGroups.forEach(function(group,i) {
+        if (group.hexCode === 'none') {
+          group.swatches.forEach(function(swatch,j) {
+            self.view.addSwatch(swatch.hexCode, swatch.counter);
+          });
+        } else {
+          var $group = self.view.addGroup(group.hexCode, group.shadePercent);
+          group.swatches.forEach(function(swatch,j) {
+            self.view.addSwatch(swatch.hexCode, swatch.counter, $group);
+          });
+        }
+      });
+    }
+  },
+
+  resetSort: function() {
+    console.log('resetting, start over');
+    $('.group').remove();
+    $('.swatch').remove();
+    this.storage.remove('myGroups');
+    this.showAllSwatches();
+    this.view.addGroup();
+    this.updateSortables();
   },
 
   shadeColor: function(color, amt) {
