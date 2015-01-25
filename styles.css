@@ -1,11 +1,21 @@
-/*CSS base styles for color palettes
-  TODO: Sass incorporation?       */
+/* CSS base styles for color palettes
+  TODO: Sass incorporation? */
+
 body {
   padding-top: 50px;
 }
 
 .about {
   padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #c3325f;
 }
 
 .swatch {
