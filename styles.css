@@ -3,3 +3,13 @@
 body {
   padding-top: 50px;
 }
+.swatch {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.group {
+
+}
