@@ -15,7 +15,7 @@ View.prototype = {
 
     var group = $('<div></div>');
     group.addClass('group');
-    group.append('<h2>'+"New Group"+'</h2>');
+    group.append('<h2 contenteditable="true">'+"New Group"+'</h2>');
     group.append('<div class="well"></div>');
     $('.well',group).addClass('connectedSortable');
 
