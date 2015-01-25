@@ -8,6 +8,8 @@ Controller.prototype = {
     this.view = new View();
     this.bindEvents();
     this.showAllColors();
+
+    this.view.addColorGroup();
   },
 
   bindEvents: function(){

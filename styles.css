@@ -1,9 +1,6 @@
 /*CSS base styles for color palettes
   TODO: Sass incorporation?       */
 body {
-/*html {
-  overflow: hidden;
-  height: 100%;*/
   padding-top: 50px;
 }
 
@@ -14,18 +11,14 @@ body {
 .swatch {
   width: 100px;
   height: 100px;
-  display: inline-block;
+  float: left;
   padding: 5px;
 }
 
 #color-list,
 #group-list {
-  /*position: absolute;*/
   overflow-y: scroll;
-  /*height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;  */
+  height: 600px;
 }
 
 .group {
