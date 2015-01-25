@@ -23,9 +23,9 @@ View.prototype = {
 
     $(this.groupListSelector).append(group);
 
-    $('.hex-code').on("focusout", function() {
+    $('.hex-code',group).on("focusout", function(e) {
       console.log("entering hex");
-      $('.hex-code').parent('.group').css('background-color', $('.hex-code').text());
+      $(e.target).parent('.group').css('background-color', $(e.target).text());
     });
 
     $('.connectedSortable').sortable({
