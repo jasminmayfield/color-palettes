@@ -4,7 +4,7 @@ MyXero, Payroll &amp; Practice Manager.
 
 It seemed necessary to build a tool to help group colors so we can then create
 shared variables for Sass Globals (which are to be consumed across all projects as desired).
-Simultaneously it will help strip down the shitload of colors we have on file,
+I hope it will help strip down the shitload of colors we have on file,
 allowing design making and dev-building to be a better, more manageable and
 collaborative experience.
 
@@ -19,7 +19,7 @@ have multiple hex values shared across many palettes).
 hex value. This will automatically trigger/update the background-color of the
 current base color you are working with, creating a new palette and/or color comparison.
 - Base colors can be lightened or darkened by changing the input value from 0.
-- Your work can be reset. It can also be saved, but only just once! (at this stage!).
+- Your work can be reset. It can also be saved, but only just once! (at this stage!)
 
 ### A few notes / potential TODO list
 - Darkening your palette requires a negative integer, e.g. ` -80` will darken the

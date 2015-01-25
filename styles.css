@@ -23,6 +23,17 @@ a:active {
   height: 100px;
   float: left;
   padding: 5px;
+  position: relative;
+  text-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+  color: #fff;
+}
+
+.swatch .badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    text-shadow: none;
+    background-color: rgba(0,0,0,0.3);
 }
 
 #color-list,
@@ -32,10 +43,33 @@ a:active {
 }
 
 .group {
+  width: 90%;
   padding: 10px;
   margin-top: 10px;
+  position: relative;
 }
 
-.color-match-list {
+.group .hex-code {
+  width: 100px;
+  display: inline-block;
+}
+
+.group .shade-percengt {
+  width: 50px;
+  display: inline-block;
+}
+
+.group .handle {
+  width: 30px;
+  display: inline-block;
+}
+
+.group .close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.group .color-match-list {
   min-height: 100px;
 }

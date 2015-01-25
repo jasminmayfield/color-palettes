@@ -6,7 +6,8 @@ Controller.prototype = {
 
   start: function(){
     this.view = new View();
-    // Do spaces matter here? Does the order matter here, should it match order of functions below?
+    this.storage = $.localStorage;
+    
     this.showAllColors();
     this.view.showNewColorGroup();
 
