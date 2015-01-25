@@ -2,6 +2,7 @@ function View() {
   this.addColorGroupButtonSelector = "#add-color-group-button";
   this.colorListSelector = "#color-list";
   this.groupListSelector = "#group-list";
+  this.connectedSortablesSelector = ".connectedSortable";
 }
 
 View.prototype = {
@@ -16,23 +17,13 @@ View.prototype = {
     var group = $('<div></div>');
     group.addClass('group');
     group.append('<div contenteditable="true" class="hex-code">#c3325f</div>');
+    group.append('<div contenteditable="true" class="shade-percent">0</div>');
     group.css('background-color', '#c3325f');
 
     group.append('<div class="color-match-list connectedSortable"></div>');
 
     $(this.groupListSelector).append(group);
-
-    $('.hex-code',group).on("focusout", function(e) {
-      console.log("entering hex");
-      $(e.target).parent('.group').css('background-color', $(e.target).text());
-    });
-
-    $('.connectedSortable').sortable({
-      connectWith: ".connectedSortable",
-      helper: 'clone',
-      appendTo: 'body'
-    }).disableSelection();
-
+    return group;
   }
 
   // Adjustment is lighten and darken by a percentage input only
