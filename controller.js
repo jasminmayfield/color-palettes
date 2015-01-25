@@ -53,6 +53,8 @@ Controller.prototype = {
     this.updateGroupColor(group, hexCode, shadePercent);
   },
 
+  // shadePercent update is for lighten/darkening a color with a percentage input only
+  // i.e. excludes hue & saturation adjustments
   updateGroupColor: function(group, hexCode, shadePercent) {
     group.css('background-color', this.shadeColor(hexCode, shadePercent));
   },
