@@ -65,6 +65,12 @@ a:active {
   display: inline-block;
 }
 
+.group .notes {
+  margin-left: 30px;
+  text-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+  color: #fff;
+}
+
 .group .handle {
   width: 30px;
   display: inline-block;
