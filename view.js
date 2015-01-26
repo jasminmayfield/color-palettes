@@ -23,18 +23,21 @@ View.prototype = {
     group.append(swatch).addClass('connectedSortable');
   },
 
-  addGroup: function(hexCode, shadePercent) {
+  addGroup: function(hexCode, shadePercent, sassGlobal, notes) {
     console.log("A color group has been added");
     hexCode = (typeof hexCode === "undefined") ? "#c3325f" : hexCode;
     shadePercent = (typeof shadePercent === "undefined") ? 0 : shadePercent;
+    sassGlobal = (typeof sassGlobal === "undefined") ? "$rename-me" : sassGlobal;
+    notes = (typeof notes === "undefined") ? "Notes" : notes;
+    console.log("stuff");
 
     var group = $('<div class="group"></div>');
     group.append('<div class="handle"><span class="fa fa-square"></span></div>');
-    group.append('<div contenteditable="true" class="sass-global">$rename-me</div>');
+    group.append('<div contenteditable="true" class="sass-global">'+sassGlobal+'</div>');
     group.append('<div style="clear:both;"></div>');
     group.append('<div contenteditable="true" class="hex-code">'+hexCode+'</div>');
     group.append('<div contenteditable="true" class="shade-percent">'+shadePercent+'</div>');
-    group.append('<div contenteditable="true" class="notes">Notes</div>');
+    group.append('<div contenteditable="true" class="notes">'+notes+'</div>');
     group.append('<div style="clear:both;"></div>');
     group.append('<div class="color-match-list connectedSortable"></div>');
     group.append('<div class="close-button"><span class="fa fa-times-circle"></span></div');

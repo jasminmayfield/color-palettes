@@ -80,11 +80,15 @@ Controller.prototype = {
       myGroups[i] = {};
       myGroups[i]['hexCode'] = $('.hex-code',this).text();
       myGroups[i]['shadePercent'] = $('.shade-percent',this).text();
+      myGroups[i]['sassGlobal'] = $('.sass-global',this).text();
+      myGroups[i]['notes'] = $('.notes',this).text();
       myGroups[i].swatches = [];
       $('.swatch',this).each(function(j) {
         myGroups[i].swatches.push({
           hexCode: $(this).data('hex-code'),
-          counter: $(this).data('counter')
+          counter: $(this).data('counter'),
+          sassGlobal: $(this).data('sass-global'),
+          notes: $(this).data('notes')
         });
       });
     });
@@ -118,7 +122,7 @@ Controller.prototype = {
             self.view.addSwatch(swatch.hexCode, swatch.counter);
           });
         } else {
-          var $group = self.view.addGroup(group.hexCode, group.shadePercent);
+          var $group = self.view.addGroup(group.hexCode, group.shadePercent, group.sassGlobal, group.notes);
           group.swatches.forEach(function(swatch,j) {
             self.view.addSwatch(swatch.hexCode, swatch.counter, $group);
           });
