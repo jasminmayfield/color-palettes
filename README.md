@@ -41,3 +41,8 @@ as and when needed.
 support that (although sometimes seems to return funny colors, requires further
 testing).
 - A lighten/darken slider per color palette would be cool.
+
+### Thanks:
+- Biiiiig thank you to [Gerard Paapu](https://github.dev.xero.com/dev-gerardp) 
+and [Adam Adeane](https://github.dev.xero.com/dev-adama) who wrote some logic to
+scrape colors from files. Thanks!

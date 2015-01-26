@@ -34,7 +34,7 @@ View.prototype = {
     group.append('<div style="clear:both;"></div>');
     group.append('<div contenteditable="true" class="hex-code">'+hexCode+'</div>');
     group.append('<div contenteditable="true" class="shade-percent">'+shadePercent+'</div>');
-    group.append('<div contenteditable="true" class="notes">Notes</div>')
+    group.append('<div contenteditable="true" class="notes">Notes</div>');
     group.append('<div style="clear:both;"></div>');
     group.append('<div class="color-match-list connectedSortable"></div>');
     group.append('<div class="close-button"><span class="fa fa-times-circle"></span></div');
