@@ -66,6 +66,7 @@ a:active {
 }
 
 .group .notes {
+  margin-bottom: 20px;
   margin-left: 30px;
   text-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
   color: #fff;
