@@ -19,7 +19,7 @@ Controller.prototype = {
     $(this.view.resetButtonSelector).on("click", this.resetSort.bind(this));
     $(this.view.saveButtonSelector).on("click", this.saveSort.bind(this));
     $(this.view.newGroupButtonSelector).on("click", this.newGroup.bind(this));
-    $(this.view.groupListSelector).on("focusout", '.hex-code, .shade-percent', this.changeGroupColor.bind(this));
+    $(this.view.groupListSelector).on("focusout", '.hex-code, .shade-percent, .saturate-percent', this.changeGroupColor.bind(this));
     $(this.view.groupListSelector).on("click", '.close-button', this.removeGroup.bind(this));
   },
 
@@ -48,15 +48,14 @@ Controller.prototype = {
 
   changeGroupColor: function(e) {
     var group = $(e.target).parent('.group');
-    var hexCode = $('.hex-code',group).text();
-    var shadePercent = $('.shade-percent',group).text();
-    this.updateGroupColor(group, hexCode, shadePercent);
+    this.updateGroupColor(group);
   },
 
-  // shadePercent update is for lighten/darkening a color with a percentage input only
-  // i.e. excludes hue & saturation adjustments
-  updateGroupColor: function(group, hexCode, shadePercent) {
-    group.css('background-color', this.shadeColor(hexCode, shadePercent));
+  updateGroupColor: function(group) {
+    var hexCode = $('.hex-code',group).text();
+    var shadePercent = $('.shade-percent',group).text();
+    var saturatePercent = $('.saturate-percent', group).text();
+    group.css('background-color', this.shadeColor(this.saturateColor(hexCode, saturatePercent), shadePercent));
   },
 
   updateSortables: function() {
@@ -80,15 +79,14 @@ Controller.prototype = {
       myGroups[i] = {};
       myGroups[i]['hexCode'] = $('.hex-code',this).text();
       myGroups[i]['shadePercent'] = $('.shade-percent',this).text();
+      myGroups[i]['saturatePercent'] = $('.saturate-percent',this).text();
       myGroups[i]['sassGlobal'] = $('.sass-global',this).text();
       myGroups[i]['notes'] = $('.notes',this).text();
       myGroups[i].swatches = [];
       $('.swatch',this).each(function(j) {
         myGroups[i].swatches.push({
           hexCode: $(this).data('hex-code'),
-          counter: $(this).data('counter'),
-          sassGlobal: $(this).data('sass-global'),
-          notes: $(this).data('notes')
+          counter: $(this).data('counter')
         });
       });
     });
@@ -122,7 +120,8 @@ Controller.prototype = {
             self.view.addSwatch(swatch.hexCode, swatch.counter);
           });
         } else {
-          var $group = self.view.addGroup(group.hexCode, group.shadePercent, group.sassGlobal, group.notes);
+          var $group = self.view.addGroup(group.hexCode, group.shadePercent, group.saturatePercent, group.sassGlobal, group.notes);
+          self.updateGroupColor($group);
           group.swatches.forEach(function(swatch,j) {
             self.view.addSwatch(swatch.hexCode, swatch.counter, $group);
           });
@@ -158,6 +157,28 @@ Controller.prototype = {
     var css = Sass.compile(scss);
     console.log(css);
     console.log(css.indexOf(';'));
+    var newColor = css.substring(52, css.indexOf(';'));
+    console.log(newColor);
+    return newColor;
+  },
+
+  saturateColor: function(color, amount) {
+    var saturization = '';
+    // parses string input to integer like ruby .to_i
+    amount = parseInt(amount);
+    if (amount > 0) {
+      saturization = 'saturate';
+    } else if (amount < 0) {
+      saturization = 'desaturate';
+    } else {
+      return color;
+    }
+
+    // Math.abs = absolute value makes negatives positives
+    var scss = '.useless-compiler-placeholder { background-color: ' + saturization + '(' + color + ', ' + Math.abs(amount)+'%); }';
+    console.log(scss);
+    var css = Sass.compile(scss);
+    console.log(css);
     var newColor = css.substring(52, css.indexOf(';'));
     console.log(newColor);
     return newColor;

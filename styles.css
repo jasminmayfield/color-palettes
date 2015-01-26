@@ -60,6 +60,7 @@ a:active {
   margin-left: 30px;
 }
 
+.group .saturate-percent,
 .group .shade-percent {
   width: 30px;
   display: inline-block;

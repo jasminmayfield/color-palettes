@@ -23,10 +23,11 @@ View.prototype = {
     group.append(swatch).addClass('connectedSortable');
   },
 
-  addGroup: function(hexCode, shadePercent, sassGlobal, notes) {
+  addGroup: function(hexCode, shadePercent, saturatePercent, sassGlobal, notes) {
     console.log("A color group has been added");
     hexCode = (typeof hexCode === "undefined") ? "#c3325f" : hexCode;
     shadePercent = (typeof shadePercent === "undefined") ? 0 : shadePercent;
+    saturatePercent = (typeof saturatePercent === "undefined") ? 0 : saturatePercent;
     sassGlobal = (typeof sassGlobal === "undefined") ? "$rename-me" : sassGlobal;
     notes = (typeof notes === "undefined") ? "Notes" : notes;
     console.log("stuff");
@@ -37,6 +38,7 @@ View.prototype = {
     group.append('<div style="clear:both;"></div>');
     group.append('<div contenteditable="true" class="hex-code">'+hexCode+'</div>');
     group.append('<div contenteditable="true" class="shade-percent">'+shadePercent+'</div>');
+    group.append('<div contenteditable="true" class="saturate-percent">'+saturatePercent+'</div>');
     group.append('<div contenteditable="true" class="notes">'+notes+'</div>');
     group.append('<div style="clear:both;"></div>');
     group.append('<div class="color-match-list connectedSortable"></div>');
