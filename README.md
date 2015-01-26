@@ -3,7 +3,8 @@ A sorting tool to help consolidate and identify like colors across Content, Xero
 MyXero, Payroll &amp; Practice Manager.
 
 It seemed necessary to build a tool to help group colors so we can then create
-shared variables for Sass Globals (which are to be consumed across all projects as desired).
+shared variables for [Sass Globals](https://github.dev.xero.com/gravity/sass-globals)
+(which are to be consumed across all projects as desired).
 I hope it will help strip down the shitload of colors we have on file,
 allowing design making and dev-building to be a better, more manageable and
 collaborative experience.
@@ -43,6 +44,6 @@ testing).
 - A lighten/darken slider per color palette would be cool.
 
 ### Thanks:
-- Biiiiig thank you to [Gerard Paapu](https://github.dev.xero.com/dev-gerardp) 
+- Biiiiig thank you to [Gerard Paapu](https://github.dev.xero.com/dev-gerardp)
 and [Adam Adeane](https://github.dev.xero.com/dev-adama) who wrote some logic to
 scrape colors from files. Thanks!
