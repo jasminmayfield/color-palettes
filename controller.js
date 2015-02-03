@@ -55,7 +55,9 @@ Controller.prototype = {
     var hexCode = $('.hex-code',group).text();
     var shadePercent = $('.shade-percent',group).text();
     var saturatePercent = $('.saturate-percent', group).text();
-    group.css('background-color', this.shadeColor(this.saturateColor(hexCode, saturatePercent), shadePercent));
+    var newColor = this.saturateColor(this.shadeColor(hexCode, shadePercent), saturatePercent);
+    console.log("New color: "+newColor);
+    group.css('background-color', newColor);
   },
 
   updateSortables: function() {
@@ -163,19 +165,29 @@ Controller.prototype = {
   },
 
   saturateColor: function(color, amount) {
+    var condition = '';
     var saturization = '';
     // parses string input to integer like ruby .to_i
     amount = parseInt(amount);
+    var adjusted_amount = '';
+
     if (amount > 0) {
+      condition = "< 100%";
       saturization = 'saturate';
+      adjusted_amount = "min($amt, 100%-$sat)";
     } else if (amount < 0) {
+      condition = "> 0%";
       saturization = 'desaturate';
+      adjusted_amount = "min($amt, $sat)";
     } else {
       return color;
     }
 
-    // Math.abs = absolute value makes negatives positives
-    var scss = '.useless-compiler-placeholder { background-color: ' + saturization + '(' + color + ', ' + Math.abs(amount)+'%); }';
+     // Math.abs = absolute value makes negatives positives
+    // var scss = '.useless-compiler-placeholder { background-color: ' + saturization + '(' + color + ', ' + Math.abs(amount)+'%); }';
+
+    var scss = "@mixin wah($col, $amt) { $sat: saturation($col); @if $sat "+condition+" { background-color: "+saturization+"($col, "+adjusted_amount+"); } @else { background-color: $col; } } .useless-compiler-placeholder { @include wah("+color+", "+Math.abs(amount)+"%); }";
+
     console.log(scss);
     var css = Sass.compile(scss);
     console.log(css);
